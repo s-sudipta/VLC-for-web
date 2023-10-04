@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video Player</title>
+    <link href="styles.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="heading">
+        <h1>MP4 VideoPlayer</h1>
+    </div>
+    <div style="text-align: center;margin: 20px;">
+        <div style="position: relative;z-index: 3;">
+            <button class="importbtn" onclick="showInput()">&#8964;</button>
+        </div>
+        <div class="overlayer" id="overlayer" onclick="showInput()"></div>
+        <div id="inputcontainer" class="inputcontainer" >
+        <label for="video">MP4 File</label><br/>
+        <form action="/uploadMP4" method="post" enctype="multipart/form-data">
+            <input type="file" name="mp4File" accept="video/mp4">
+            <input type="submit" value="Upload">
+        </form>
+        <br/>
+        <label for="subtitles">Subtitle File</label><br/>
+        <form action="/uploadSUB" method="post" enctype="multipart/form-data">
+            <input type="file" name="subtitleFile" accept=".vtt, .srt">
+            <input type="submit" value="Upload">
+        </form>
+        <br/>
+        <label for="link">Paste a URL</label><br/>
+        <form action="/uploadURL" method="post" enctype="multipart/form-data">
+            <input type="text" name="linkUrl">
+            <input type="submit" value="Upload">
+        </form>
+        <br/>
+        </div>
+    </div>
+    
+    <div class="videocontainer">
+    <video controls>
+        <source src="./dist/video.mp4" id="sourceId"  type="video/mp4">
+        <track default src="./dist/subtitle.vtt"  id="trackId" kind="subtitles" srclang="en" label="English">
+    </video>
+    </div>
+    <script src="./main.js"></script>
+</body>
+</html>
